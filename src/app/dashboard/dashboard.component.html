@@ -1,0 +1,90 @@
+<div class="w-screen h-screen flex flex-col px-10 md:px-32 xl:px-64 pt-6">
+  <!-- SEARCH BAR -->
+  <div class="flex flex-row justify-end lg:justify-between mb-6 border-b pb-2">
+    <!-- ARRHYTHMIAS SELECTORS -->
+    <div class="hidden lg:flex flex-row">
+      <arrhythmia-selector
+        [active]="model.arrhythmiasFilter.has(Arrhythmia.AFib)"
+        [arrhythmia]="Arrhythmia.AFib"
+        >AFib</arrhythmia-selector
+      >
+      <arrhythmia-selector
+        [active]="model.arrhythmiasFilter.has(Arrhythmia.AVBlock)"
+        [arrhythmia]="Arrhythmia.AVBlock"
+        >Av Block</arrhythmia-selector
+      >
+      <arrhythmia-selector
+        [active]="model.arrhythmiasFilter.has(Arrhythmia.Pause)"
+        [arrhythmia]="Arrhythmia.Pause"
+        >Pause</arrhythmia-selector
+      >
+      <arrhythmia-selector
+        [active]="model.arrhythmiasFilter.has(Arrhythmia.PSVC)"
+        [arrhythmia]="Arrhythmia.PSVC"
+        >PSVC</arrhythmia-selector
+      >
+      <arrhythmia-selector
+        [active]="model.arrhythmiasFilter.has(Arrhythmia.PVC)"
+        [arrhythmia]="Arrhythmia.PVC"
+        >PVC</arrhythmia-selector
+      >
+    </div>
+    <!-- NAME FILTER INPUT -->
+    <div class="flex flex-row space-x-1">
+      <i class="material-icons text-teal-700">filter_alt</i>
+      <input
+        [value]="model.nameFilter"
+        (input)="nameFilterChanged($event.target.value)"
+        placeholder="Filter by Name"
+      />
+      <i
+        class="material-icons text-gray-200 cursor-pointer"
+        (click)="nameFilterChanged('')"
+        >cancel</i
+      >
+    </div>
+  </div>
+  <!-- CONTENT ERROR -->
+  <div
+    *ngIf="model.patients.status == 'error'"
+    class="flex justify-center items-center text-gray-500 font-bold text-4xl"
+  >
+    Error during loading. Try to refresh the page...
+  </div>
+
+  <!-- CONTENT LOADING -->
+  <ng-container *ngIf="model.patients.status == 'loading'">
+    <app-cards class="flex flex-col min-h-0">
+      <ng-container todo><app-loading-card></app-loading-card></ng-container>
+      <ng-container done><app-loading-card></app-loading-card></ng-container>
+    </app-cards>
+  </ng-container>
+
+  <!-- CONTENT LOADED -->
+  <ng-container *ngIf="model.patients.status == 'loaded'">
+    <app-cards class="flex flex-col min-h-0">
+      <ng-container
+        todo
+        *ngFor="
+          let patient of model.patients.getNotDone(
+            model.nameFilter,
+            model.arrhythmiasFilter
+          )
+        "
+      >
+        <app-card [patient]="patient"></app-card>
+      </ng-container>
+      <ng-container
+        done
+        *ngFor="
+          let patient of model.patients.getDone(
+            model.nameFilter,
+            model.arrhythmiasFilter
+          )
+        "
+      >
+        <app-card [patient]="patient"></app-card>
+      </ng-container>
+    </app-cards>
+  </ng-container>
+</div>

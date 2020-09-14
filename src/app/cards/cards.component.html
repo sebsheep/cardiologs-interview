@@ -1,0 +1,19 @@
+<div
+  class="flex flex-col lg:flex-row justify-between min-h-0 overflow-y-auto"
+>
+  <!-- TODO -->
+    <div class="flex flex-col lg:w-1/2 lg:pr-12">
+    <h2 class="font-bold text-gray-500 text-xl self-end">TODO</h2>
+    <div class="flex flex-col mt-4 lg:overflow-y-auto pr-1 pb-10">
+      <ng-content select="[todo]"></ng-content>
+    </div>
+  </div>
+
+  <!-- DONE -->
+  <div class="flex flex-col lg:w-1/2 lg:pl-12 mt-10 lg:mt-0 min-h-0">
+    <h2 class="font-bold text-gray-500 text-xl self-end">DONE</h2>
+    <div class="flex flex-col mt-4 lg:overflow-y-auto pr-1 pb-10">
+      <ng-content select="[done]"></ng-content>
+    </div>
+  </div>
+</div>

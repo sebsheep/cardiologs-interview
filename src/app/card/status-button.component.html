@@ -1,0 +1,12 @@
+<button
+  (click)="click.emit()"
+  class="border w-32 text-left px-2 py-2 rounded-md flex flex-row justify-between focus:outline-none"
+  [ngClass]="active? activeClass : 'text-gray-500 border-gray-500'"
+>
+  <span class="font-bold"><ng-content></ng-content></span>
+  <i
+    class="material-icons"
+    [ngClass]="{ 'invisible': !active }"
+    >{{ icon }}</i
+  >
+</button>

@@ -1,0 +1,19 @@
+.animate-pulse-delay-200 {
+    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) 200ms infinite !important;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) 200ms infinite !important;
+}
+
+.animate-pulse-delay-400 {
+    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) 400ms infinite !important;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) 400ms infinite !important;
+}
+
+.animate-pulse-delay-600 {
+    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) 600ms infinite !important;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) 600ms infinite !important;
+}
+
+.animate-pulse-delay-800 {
+    -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) 800ms infinite !important;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) 800ms infinite !important;
+}

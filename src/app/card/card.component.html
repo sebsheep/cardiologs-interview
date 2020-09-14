@@ -1,0 +1,64 @@
+<div
+  class="border border-gray-500 h-64 py-1 sm:py-4 px-8 rounded-md shadow flex flex-col sm:flex-row space-x-8 xl:space-x-20 mb-4"
+>
+  <div class="flex flex-col items-center sm:items-start">
+    <div class="font-bold text-2xl text-gray-800">{{ patient.name }}</div>
+    <div class="font-bold text-gray-600">
+      {{ patient.creationDate.getDate() }}-{{
+        patient.creationDate.getMonth() + 1
+      }}-{{ patient.creationDate.getFullYear() }}
+    </div>
+    <div class="flex flex-col space-y-3 mt-2">
+      <status-button
+        [active]="patient.status == PatientStatus.Pending"
+        [activeClass]="'text-orange-600 border-orange-600'"
+        [icon]="'query_builder'"
+        (click)="pendingClicked()"
+      >
+        PENDING
+      </status-button>
+      <status-button
+        [active]="patient.status == PatientStatus.Rejected"
+        [activeClass]="'text-red-700 border-red-700'"
+        [icon]="'clear'"
+        (click)="rejectedClicked()"
+      >
+        REJECTED
+      </status-button>
+      <status-button
+        [active]="patient.status == PatientStatus.Done"
+        [activeClass]="'text-green-700 border-green-700'"
+        [icon]="'check'"
+       (click)="doneClicked()"
+      >
+        DONE
+      </status-button>
+    </div>
+  </div>
+  <div class="flex flex-col items-center sm:items-start">
+    <div class="whitespace-no-wrap">
+      <span class="text-red-800 font-bold text-xl">{{
+        patient.arrhythmias.size
+      }}</span>
+      arrhythmias
+      
+    </div>
+    <div class="hidden sm:flex flex-col space-y-2 text-xl mt-2">
+      <arrhythmia [active]="patient.arrhythmias.has(Arrhythmia.AFib)"
+        >AFib</arrhythmia
+      >
+      <arrhythmia [active]="patient.arrhythmias.has(Arrhythmia.AVBlock)"
+        >Av Block</arrhythmia
+      >
+      <arrhythmia [active]="patient.arrhythmias.has(Arrhythmia.Pause)"
+        >Pause</arrhythmia
+      >
+      <arrhythmia [active]="patient.arrhythmias.has(Arrhythmia.PSVC)"
+        >PSVC</arrhythmia
+      >
+      <arrhythmia [active]="patient.arrhythmias.has(Arrhythmia.PVC)"
+        >PVC</arrhythmia
+      >
+    </div>
+  </div>
+</div>
