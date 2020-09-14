@@ -49,9 +49,9 @@ but it didn't find such similar *wide adopted* lib in TS.)
 Those `decode` functions represent failure by returning `null`. It would be 
 more appropriate to use some kind of
 [`Result`](https://en.wikipedia.org/wiki/Result_type)
-type to express what made the decoding fail, but it seems a bit complicated
-to use in practice since each TS lib use its own `Result` version, so I use
-`null` 🤷‍♂️.
+type to express why the decoding fail, but it seems a bit complicated
+to use in practice since each TS lib use its own `Result` version, so I used
+a simple `null` 🤷‍♂️.
 
 
 ## Build
